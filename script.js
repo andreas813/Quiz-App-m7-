@@ -1,68 +1,68 @@
 const questions = [
-    // {
-    //     "question": "Was ist die Hauptplatine eines Computers?",
-    //     "answer_1": "RAM",
-    //     "answer_2": "GPU",
-    //     "answer_3": "Motherboard",
-    //     "answer_4": "CPU",
-    //     "correct_answer": 3
-    // },
-    // {
-    //     "question": "Welches Element ist für die Übertragung von Daten über das Internet verantwortlich?",
-    //     "answer_1": "Router",
-    //     "answer_2": "Modem",
-    //     "answer_3": "Switch",
-    //     "answer_4": "Firewall",
-    //     "correct_answer": 1
-    // },
-    // {
-    //     "question": "Was ist die chemische Formel für Wasser?",
-    //     "answer_1": "NaCl",
-    //     "answer_2": "CO₂",
-    //     "answer_3": "H₂O",
-    //     "answer_4": "CH₄",
-    //     "correct_answer": 3
-    // },
-    // {
-    //     "question": "Wer hat die Relativitätstheorie entwickelt?",
-    //     "answer_1": "Galileo Galilei",
-    //     "answer_2": "Isaac Newton",
-    //     "answer_3": "Albert Einstein",
-    //     "answer_4": "Niels Bohr",
-    //     "correct_answer": 3
-    // },
-    // {
-    //     "question": "Welches der folgenden Spiele wurde von Bethesda Softworks entwickelt?",
-    //     "answer_1": "Red Dead Redemption 2",
-    //     "answer_2": "The Elder Scrolls V: Skyrim",
-    //     "answer_3": "The Witcher 3: Wild Hunt",
-    //     "answer_4": "Grand Theft Auto V",
-    //     "correct_answer": 2
-    // },
-    // {
-    //     "question": "Wer ist der Schöpfer des Spiels 'Minecraft'?",
-    //     "answer_1": "Shigeru Miyamoto",
-    //     "answer_2": "Markus Persson (Notch)",
-    //     "answer_3": "Gabe Newell",
-    //     "answer_4": "Hideo Kojima",
-    //     "correct_answer": 2
-    // },
-    // {
-    //     "question": "Was ist das kleinste Teilchen eines chemischen Elements?",
-    //     "answer_1": "Elektron",
-    //     "answer_2": "Molekül",
-    //     "answer_3": "Proton",
-    //     "answer_4": "Atom",
-    //     "correct_answer": 1
-    // },
-    // {
-    //     "question": "Welcher der folgenden Planeten ist der kleinste im Sonnensystem?",
-    //     "answer_1": "Mars",
-    //     "answer_2": "Venus",
-    //     "answer_3": "Jupiter",
-    //     "answer_4": "Merkur",
-    //     "correct_answer": 4
-    // },
+    {
+        "question": "Was ist die Hauptplatine eines Computers?",
+        "answer_1": "RAM",
+        "answer_2": "GPU",
+        "answer_3": "Motherboard",
+        "answer_4": "CPU",
+        "correct_answer": 3
+    },
+    {
+        "question": "Welches Element ist für die Übertragung von Daten über das Internet verantwortlich?",
+        "answer_1": "Router",
+        "answer_2": "Modem",
+        "answer_3": "Switch",
+        "answer_4": "Firewall",
+        "correct_answer": 1
+    },
+    {
+        "question": "Was ist die chemische Formel für Wasser?",
+        "answer_1": "NaCl",
+        "answer_2": "CO₂",
+        "answer_3": "H₂O",
+        "answer_4": "CH₄",
+        "correct_answer": 3
+    },
+    {
+        "question": "Wer hat die Relativitätstheorie entwickelt?",
+        "answer_1": "Galileo Galilei",
+        "answer_2": "Isaac Newton",
+        "answer_3": "Albert Einstein",
+        "answer_4": "Niels Bohr",
+        "correct_answer": 3
+    },
+    {
+        "question": "Welches der folgenden Spiele wurde von Bethesda Softworks entwickelt?",
+        "answer_1": "Red Dead Redemption 2",
+        "answer_2": "The Elder Scrolls V: Skyrim",
+        "answer_3": "The Witcher 3: Wild Hunt",
+        "answer_4": "Grand Theft Auto V",
+        "correct_answer": 2
+    },
+    {
+        "question": "Wer ist der Schöpfer des Spiels 'Minecraft'?",
+        "answer_1": "Shigeru Miyamoto",
+        "answer_2": "Markus Persson (Notch)",
+        "answer_3": "Gabe Newell",
+        "answer_4": "Hideo Kojima",
+        "correct_answer": 2
+    },
+    {
+        "question": "Was ist das kleinste Teilchen eines chemischen Elements?",
+        "answer_1": "Elektron",
+        "answer_2": "Molekül",
+        "answer_3": "Proton",
+        "answer_4": "Atom",
+        "correct_answer": 1
+    },
+    {
+        "question": "Welcher der folgenden Planeten ist der kleinste im Sonnensystem?",
+        "answer_1": "Mars",
+        "answer_2": "Venus",
+        "answer_3": "Jupiter",
+        "answer_4": "Merkur",
+        "correct_answer": 4
+    },
     {
         "question": "Welches der folgenden Spiele wurde von CD Projekt RED entwickelt?",
         "answer_1": "Assassin's Creed Odyssey",
@@ -74,6 +74,9 @@ const questions = [
 ]
 
 let currentQuestionNumber = 0;
+let correctAnswers = 0;
+let audioSuccess = new Audio('audio/goodresult-82807.mp3');
+let audioFail = new Audio('audio/invalid-selection-39351.mp3');
 
 function init() {
     document.getElementById('questionsAmount').innerHTML = questions.length;
@@ -82,33 +85,52 @@ function init() {
 }
 
 function showQuestion() {
-    if (currentQuestionNumber >= questions.length) {
-        document.getElementById('cardArea').innerHTML = completionHtml();
+    if (lastQuestion()) {
+        completionHtml();
     }
     else {
-        let currentQuestion = questions[currentQuestionNumber];
-        document.getElementById('question').innerHTML = `${currentQuestion.question}`;
-        document.getElementById('answer_1').innerHTML = `${currentQuestion.answer_1}`;
-        document.getElementById('answer_2').innerHTML = `${currentQuestion.answer_2}`;
-        document.getElementById('answer_3').innerHTML = `${currentQuestion.answer_3}`;
-        document.getElementById('answer_4').innerHTML = `${currentQuestion.answer_4}`;
+        insertQuestion();
     }
+}
+
+function lastQuestion() {
+    if (currentQuestionNumber >= questions.length) {
+        return true;
+    }
+}
+
+function insertQuestion() {
+    let currentQuestion = questions[currentQuestionNumber];
+    document.getElementById('question').innerHTML = `${currentQuestion.question}`;
+    document.getElementById('answer_1').innerHTML = `${currentQuestion.answer_1}`;
+    document.getElementById('answer_2').innerHTML = `${currentQuestion.answer_2}`;
+    document.getElementById('answer_3').innerHTML = `${currentQuestion.answer_3}`;
+    document.getElementById('answer_4').innerHTML = `${currentQuestion.answer_4}`;
 }
 
 function answering(choice) {
     let currentQuestion = questions[currentQuestionNumber];
     if (currentQuestion.correct_answer == choice) {
-        document.getElementById(`answer_${choice}`).parentElement.classList.add('bg-success', 'bg-gradient');
-        document.getElementById('buttonNext').disabled = false;
-        init();
+        correctAnswer(choice);
     }
     else {
-        // currentQuestionNumber = 1;
-        document.getElementById(`answer_${choice}`).parentElement.classList.add('bg-danger', 'bg-gradient');
-        document.getElementById(`answer_${currentQuestion.correct_answer}`).parentElement.classList.add('bg-success', 'bg-gradient');
-        init();
+        wrongAnswer(choice);
     }
+    init();
+    document.getElementById('buttonNext').disabled = false;
+}
 
+function correctAnswer(choice) {
+    document.getElementById(`answer_${choice}`).parentElement.classList.add('bg-success', 'bg-gradient');
+    audioSuccess.play();
+    correctAnswers++;
+}
+
+function wrongAnswer(choice) {
+    let currentQuestion = questions[currentQuestionNumber];
+    document.getElementById(`answer_${choice}`).parentElement.classList.add('bg-danger', 'bg-gradient');
+    document.getElementById(`answer_${currentQuestion.correct_answer}`).parentElement.classList.add('bg-success', 'bg-gradient');
+    audioFail.play();
 }
 
 function nextQuestion() {
@@ -117,17 +139,24 @@ function nextQuestion() {
     for (i = 1; i < 5; i++) {
         document.getElementById(`answer_${i}`).parentElement.classList.remove('bg-success', 'bg-danger', 'bg-gradient');
     }
+    progressBarUpdate();
     init();
 }
 
+function progressBarUpdate() {
+    progressbar = document.getElementById('progressbar');
+    progress = Number(currentQuestionNumber / questions.length * 100).toLocaleString("de-DE", {maximumFractionDigits: "0"});
+    progressbar.innerHTML = `${progress} %`
+    progressbar.style.width = `${progress.trim()}%`
+}
+
 function completionHtml() {
-    return /*html*/`
+    document.getElementById('cardArea').innerHTML =  /*html*/`
         <div class="d-flex flex-column align-items-center gap-3">
             <img src="img/brain-result.png" alt="Ergebnis-Grafik, Kopf mit Zahnrädern">
             <p><b>QUIZ COMPLETE!</b></p>
             <div class="d-flex gap-3">
-                <p><b>YOUR SCORE</b></p>
-                <p><b>${questions.length}/${questions.length}</b></p>
+                <p><b>YOUR SCORE</b></p><p><b>${correctAnswers}/${questions.length}</b></p>
             </div>
             <button class="btn btn-primary">SHARE</button>
             <a href="index.html" class="link-primary link-underline-opacity-0">REPLAY</a>

@@ -22,6 +22,10 @@
     </nav>
     <div class="cardArea" id="cardArea">
         <div class="card" style="width: 30rem;">
+            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25"
+                aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width: 0%" id="progressbar">0%</div>
+            </div>
             <img src="img/brainbg.jpg" class="card-img-top" alt="Hintergrund-Bild Gehin mit Blitz">
             <div class="card-body">
                 <h5 class="card-title" id="question">Quiz-Frage</h5>
@@ -49,11 +53,11 @@
 
                 <div class="questionFooter d-flex justify-content-between">
                     <p>Frage <b id="currentQuestion">1</b> von <b id="questionsAmount">5</b></p>
-                    <button class="btn btn-primary" disabled id="buttonNext" onclick="nextQuestion()">Nächste Frage</button>
+                    <button class="btn btn-primary" disabled id="buttonNext" onclick="nextQuestion()">Nächste
+                        Frage</button>
                 </div>
             </div>
         </div>
     </div>
     </div>
-
 </html>
