@@ -7,6 +7,12 @@
     align-items: center;
 }
 
+.cards-bg {
+    background-image: url(img/brainbg-dark.jpg);
+    background-size: cover;
+    padding: 32px;
+}
+
 .questionFooter {
     border-top: 1px solid rgba(0, 0, 0, 0.4);
     padding-top: 16px;

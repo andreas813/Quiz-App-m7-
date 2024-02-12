@@ -20,38 +20,55 @@
             <span class="navbar-brand mb-0 h1">Quiz-App (m7)</span>
         </div>
     </nav>
+    <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0"
+        aria-valuemax="100">
+        <div class="progress-bar" style="width: 0%" id="progressbar">0%</div>
+    </div>
     <div class="cardArea" id="cardArea">
-        <div class="card" style="width: 30rem;">
-            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25"
-                aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar" style="width: 0%" id="progressbar">0%</div>
-            </div>
-            <img src="img/brainbg.jpg" class="card-img-top" alt="Hintergrund-Bild Gehin mit Blitz">
-            <div class="card-body">
-                <h5 class="card-title" id="question">Quiz-Frage</h5>
+        <div class="card" style="width: 40rem;">
+            <div class="cards-bg rounded">
+                <div class="category-area mb-4 d-flex align-items-center gap-4">
+                    <img src="img/logo.png" alt="Quiz-App Logo" style="filter: invert();">
+                    <ul class="nav nav-pills" id="categories">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Active</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-disabled="true">Disabled</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="answer-area" id="answer-area">
+                    <h5 class="card-title text-light mb-4" id="question">Quiz-Frage</h5>
 
-                <div class="card mb-2" role="button" onclick="answering(1)">
-                    <div class="card-body" id="answer_1">
-                        Antwort.
+                    <div class="card mb-2 bg-transparent border-light text-light" role="button" onclick="answering(1)">
+                        <div class="card-body" id="answer_1">
+                            Antwort.
+                        </div>
+                    </div>
+                    <div class="card mb-2 bg-transparent border-light text-light" role="button" onclick="answering(2)">
+                        <div class="card-body" id="answer_2">
+                            Antwort.
+                        </div>
+                    </div>
+                    <div class="card mb-2 bg-transparent border-light text-light" role="button" onclick="answering(3)">
+                        <div class="card-body" id="answer_3">
+                            Antwort.
+                        </div>
+                    </div>
+                    <div class="card mb-2 bg-transparent border-light text-light" role="button" onclick="answering(4)">
+                        <div class="card-body" id="answer_4">
+                            Antwort.
+                        </div>
                     </div>
                 </div>
-                <div class="card mb-2" role="button" onclick="answering(2)">
-                    <div class="card-body" id="answer_2">
-                        Antwort.
-                    </div>
-                </div>
-                <div class="card mb-2" role="button" onclick="answering(3)">
-                    <div class="card-body" id="answer_3">
-                        Antwort.
-                    </div>
-                </div>
-                <div class="card mb-2" role="button" onclick="answering(4)">
-                    <div class="card-body" id="answer_4">
-                        Antwort.
-                    </div>
-                </div>
-
-                <div class="questionFooter d-flex justify-content-between">
+                <div class="questionFooter d-flex justify-content-between text-light" id="questionFooter">
                     <p>Frage <b id="currentQuestion">1</b> von <b id="questionsAmount">5</b></p>
                     <button class="btn btn-primary" disabled id="buttonNext" onclick="nextQuestion()">Nächste
                         Frage</button>
@@ -60,4 +77,5 @@
         </div>
     </div>
     </div>
+
 </html>
